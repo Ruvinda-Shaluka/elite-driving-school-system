@@ -1,12 +1,10 @@
 package lk.ijse.elitedrivingschoolsystemormcoursework.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -41,4 +39,24 @@ public class Students {
 
     @Column(nullable = false)
     private Date registrationDate;
+
+    @OneToMany(
+            mappedBy = "students",
+            cascade = CascadeType.ALL
+    )
+    private List<StudentCourseDetails> studentCourseDetails;
+
+    @OneToMany(
+            mappedBy = "students",
+            cascade = CascadeType.ALL
+    )
+    private List<Lessons> lessons;
+
+    @OneToMany(
+            mappedBy = "students",
+            cascade = CascadeType.ALL
+    )
+    private List<Payments> payments;
 }
+
+

@@ -1,10 +1,9 @@
 package lk.ijse.elitedrivingschoolsystemormcoursework.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,4 +36,16 @@ public class Instructors {
 
     @Column(nullable = false)
     private String availability;
+
+    @OneToMany(
+            mappedBy = "instructors",
+            cascade = CascadeType.ALL
+    )
+    private List<Lessons> lessons;
+
+    @OneToMany(
+            mappedBy = "instructors",
+            cascade = CascadeType.ALL
+    )
+    private List<Course> courses;
 }

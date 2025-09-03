@@ -18,8 +18,9 @@ public class Payments {
     @Column
     private String paymentId;
 
-    @Column
-    private String studentId;
+    @ManyToOne
+    @JoinColumn(name = "student_id", referencedColumnName = "studentId")
+    private Students student;
 
     @Column
     private Date paymentDate;

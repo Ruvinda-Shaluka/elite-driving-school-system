@@ -1,9 +1,6 @@
 package lk.ijse.elitedrivingschoolsystemormcoursework.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Time;
@@ -22,14 +19,17 @@ public class Lessons {
     @Column
     private String lessonId;
 
-    @Column
-    private String studentId;
+    @ManyToOne
+    @JoinColumn(name = "studentId", referencedColumnName = "studentId")
+    private Students student;
 
-    @Column
-    private String courseId;
+    @ManyToOne
+    @JoinColumn(name = "courseId", referencedColumnName = "course_id")
+    private Course course;
 
-    @Column
-    private String instructorId;
+    @ManyToOne
+    @JoinColumn(name = "instructorId", referencedColumnName = "instructor_id")
+    private Instructors instructor;
 
     @Column
     private Date lessonDate;
