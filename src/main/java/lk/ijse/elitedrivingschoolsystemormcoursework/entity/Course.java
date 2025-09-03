@@ -9,10 +9,11 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
+
 @Entity
 @Table(name = "course")
 public class Course {
+
     @Id
     @Column
     private String course_id;

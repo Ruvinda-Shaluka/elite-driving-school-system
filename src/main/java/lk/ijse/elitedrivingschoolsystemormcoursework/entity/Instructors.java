@@ -9,9 +9,8 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
-@Entity
 
+@Entity
 @Table(name = "instructors")
 public class Instructors {
 
