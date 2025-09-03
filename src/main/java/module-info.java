@@ -4,6 +4,7 @@ module lk.ijse.elitedrivingschoolsystemormcoursework {
     requires org.hibernate.orm.core;
     requires static lombok;
     requires java.sql;
+    requires jakarta.persistence;
 
 
     opens lk.ijse.elitedrivingschoolsystemormcoursework to javafx.fxml;

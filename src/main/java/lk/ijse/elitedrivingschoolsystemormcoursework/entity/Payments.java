@@ -1,5 +1,6 @@
 package lk.ijse.elitedrivingschoolsystemormcoursework.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
@@ -9,11 +10,26 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
+@Entity
+@Table(name = "payments")
 public class Payments {
+
+    @Id
+    @Column
     private String paymentId;
+
+    @Column
     private String studentId;
+
+    @Column
     private Date paymentDate;
+
+    @Column(nullable = false)
     private double amount;
+
+    @Column(nullable = false)
     private String paymentMethod;
+
+    @Column(nullable = false)
     private String status;
 }
