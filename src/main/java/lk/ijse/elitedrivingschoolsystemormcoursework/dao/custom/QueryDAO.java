@@ -1,4 +1,6 @@
 package lk.ijse.elitedrivingschoolsystemormcoursework.dao.custom;
 
-public interface QueryDAO {
+import lk.ijse.elitedrivingschoolsystemormcoursework.dao.SuperDAO;
+
+public interface QueryDAO extends SuperDAO {
 }

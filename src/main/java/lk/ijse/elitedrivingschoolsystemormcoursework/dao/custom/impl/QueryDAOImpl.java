@@ -1,4 +1,6 @@
 package lk.ijse.elitedrivingschoolsystemormcoursework.dao.custom.impl;
 
-public class QueryDAOImpl {
+import lk.ijse.elitedrivingschoolsystemormcoursework.dao.custom.QueryDAO;
+
+public class QueryDAOImpl implements QueryDAO {
 }
