@@ -2,7 +2,6 @@ package lk.ijse.elitedrivingschoolsystemormcoursework.dao.custom.impl;
 
 import lk.ijse.elitedrivingschoolsystemormcoursework.config.FactoryConfiguration;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dao.custom.InstructorsDAO;
-import lk.ijse.elitedrivingschoolsystemormcoursework.entity.Course;
 import lk.ijse.elitedrivingschoolsystemormcoursework.entity.Instructors;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -33,11 +32,11 @@ public class InstructorsDAOImpl implements InstructorsDAO {
         try {
             Query<String> query = session.createQuery("SELECT i.instructor_id FROM Instructors i ORDER BY i.instructor_id DESC", String.class)
                     .setMaxResults(1);
-            List<String> courseIdList = query.list();
-            if (courseIdList.isEmpty()) {
+            List<String> instructorsList = query.list();
+            if (instructorsList.isEmpty()) {
                 return null;
             }
-            return courseIdList.getFirst();
+            return instructorsList.getFirst();
         } finally {
             session.close();
         }
