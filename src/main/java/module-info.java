@@ -5,6 +5,7 @@ module lk.ijse.elitedrivingschoolsystemormcoursework {
     requires static lombok;
     requires java.sql;
     requires jakarta.persistence;
+    requires lk.ijse.elitedrivingschoolsystemormcoursework;
 
 
     opens lk.ijse.elitedrivingschoolsystemormcoursework to javafx.fxml;

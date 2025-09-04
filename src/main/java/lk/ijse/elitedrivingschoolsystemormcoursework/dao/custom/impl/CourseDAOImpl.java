@@ -35,7 +35,7 @@ public class CourseDAOImpl implements CourseDAO {
             if (courseIdList.isEmpty()) {
                 return null;
             }
-            return courseIdList.get(0);
+            return courseIdList.getFirst();
         } finally {
             session.close();
         }
