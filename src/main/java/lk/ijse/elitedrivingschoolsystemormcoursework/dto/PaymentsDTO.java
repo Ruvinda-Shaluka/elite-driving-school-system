@@ -3,6 +3,8 @@ package lk.ijse.elitedrivingschoolsystemormcoursework.dto;
 
 import lombok.*;
 
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -12,7 +14,7 @@ import lombok.*;
 public class PaymentsDTO {
     private String paymentId;
     private String studentId;
-    private String paymentDate;
+    private Date paymentDate;
     private double amount;
     private String paymentMethod;
     private String status;

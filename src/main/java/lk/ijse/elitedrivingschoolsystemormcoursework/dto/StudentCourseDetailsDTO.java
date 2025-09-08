@@ -3,6 +3,8 @@ package lk.ijse.elitedrivingschoolsystemormcoursework.dto;
 
 import lombok.*;
 
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -13,7 +15,7 @@ public class StudentCourseDetailsDTO {
     private String studentCourseId;
     private String studentId;
     private String courseId;
-    private String enrollmentDate;
+    private Date enrollmentDate;
     private String status;
     private String grade;
 }
