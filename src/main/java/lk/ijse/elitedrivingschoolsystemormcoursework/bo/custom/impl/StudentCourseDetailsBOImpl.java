@@ -1,6 +1,5 @@
 package lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.impl;
 
-import lk.ijse.elitedrivingschoolsystemormcoursework.bo.SuperBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.StudentCourseDetailsBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.exception.DuplicateException;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.exception.NotFoundException;
