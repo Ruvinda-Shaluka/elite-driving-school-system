@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface StudentsBO extends SuperBO {
-    List<StudentsDTO> getAllUsers() throws Exception;
+    List<StudentsDTO> getAllStudents() throws Exception;
 
     String getLastStudentId() throws Exception;
 

@@ -20,7 +20,7 @@ public class StudentsBOImpl implements StudentsBO {
     private final EntityDTOConverter converter = new EntityDTOConverter();
 
     @Override
-    public List<StudentsDTO> getAllUsers() throws Exception {
+    public List<StudentsDTO> getAllStudents() throws Exception {
         List<Students> studentsList = studentsDAO.getAll();
         List<StudentsDTO> studentsDTOList = new ArrayList<>();
         for (Students students : studentsList) {
