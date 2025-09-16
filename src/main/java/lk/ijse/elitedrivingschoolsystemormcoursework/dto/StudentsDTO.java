@@ -11,6 +11,7 @@ import java.util.Date;
 @Setter
 @Getter
 @ToString
+@Builder
 
 public class StudentsDTO {
     private String studentId;
@@ -21,8 +22,11 @@ public class StudentsDTO {
     private String address;
     private Date dob;
     private Date registrationDate;
-    private ArrayList<StudentCourseDetailsDTO> studentCourseDetails;
-    private ArrayList<LessonsDTO> lessons;
-    private ArrayList<PaymentsDTO> payments;
+    @Builder.Default
+    private ArrayList<StudentCourseDetailsDTO> studentCourseDetails = new ArrayList<>();
+    @Builder.Default
+    private ArrayList<LessonsDTO> lessons =new ArrayList<>();
+    @Builder.Default
+    private ArrayList<PaymentsDTO> payments =new ArrayList<>();
 
 }

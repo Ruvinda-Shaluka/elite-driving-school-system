@@ -10,7 +10,7 @@ import java.util.ArrayList;
 @Setter
 @Getter
 @ToString
-
+@Builder
 public class CourseDTO {
 
     private String course_id;
@@ -19,7 +19,9 @@ public class CourseDTO {
     private double fee;
     private String description;
     private String instructor_id;
-    private ArrayList<StudentCourseDetailsDTO> student_course_details;
-    private ArrayList<LessonsDTO> lessons;
+    @Builder.Default
+    private ArrayList<StudentCourseDetailsDTO> student_course_details = new ArrayList<>();
+    @Builder.Default
+    private ArrayList<LessonsDTO> lessons = new ArrayList<>();
 
 }
