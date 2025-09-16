@@ -1,12 +1,99 @@
 package lk.ijse.elitedrivingschoolsystemormcoursework.controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOFactory;
+import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOTypes;
+import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.StudentsBO;
+import lk.ijse.elitedrivingschoolsystemormcoursework.dto.StudentsDTO;
 
-public class StudentPopUpController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class StudentPopUpController implements Initializable {
+
+    private final StudentsBO studentsBO = (StudentsBO) BOFactory.getInstance().getBO(BOTypes.STUDENTS);
+
+    private final String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    private final String phoneRegex = "^07\\d{8}$";
+
+
+    public TextField txtFirstName;
+    public TextField txtLastName;
+    public TextField txtEmail;
+    public TextField txtContact;
+    public TextField txtAddress;
+    public TextField txtDOB;
+    public TextField txtRegDate;
+    public Button btnSave;
+    public Button btnUpdate;
+    public Label lblStudentId;
+
     public void btnSaveOncAction(ActionEvent actionEvent) {
+
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        String email = txtEmail.getText();
+        String contact = txtContact.getText();
+        String address = txtAddress.getText();
+        String dob = txtDOB.getText();
+        String regDate = txtRegDate.getText();
+
+        boolean isValidEmail = email.matches(emailRegex);
+        boolean isValidPhone = contact.matches(phoneRegex);
+
+        txtEmail.setStyle(txtEmail.getStyle() + ";-fx-border-color: #7367F0;");
+        txtContact.setStyle(txtContact.getStyle() + ";-fx-border-color: #7367F0;");
+
+        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || contact.isEmpty() || address.isEmpty() || dob.isEmpty() || regDate.isEmpty()) {
+            btnSave.setDisable(true);
+            btnUpdate.setDisable(true);
+            new Alert(Alert.AlertType.ERROR, "Please fill all the fields", ButtonType.OK).show();
+            return;
+        }
+
+        if (!isValidEmail) {
+            txtEmail.setStyle(txtEmail.getStyle() + ";-fx-border-color: red;");
+            new Alert(Alert.AlertType.ERROR, "Invalid email format", ButtonType.OK).show();
+            return;
+        }
+        if (!isValidPhone) {
+            txtContact.setStyle(txtContact.getStyle() + ";-fx-border-color: red;");
+            new Alert(Alert.AlertType.ERROR, "Invalid phone number format", ButtonType.OK).show();
+            return;
+        }
+        try {
+            boolean isSaved = studentsBO.saveStudents(new StudentsDTO(
+                    lblStudentId.getText(),
+                    firstName,
+                    lastName,
+                    email,
+                    contact,
+                    address,
+                    dob,
+                    regDate
+            ));
+            if (isSaved) {
+                new Alert(Alert.AlertType.INFORMATION, "Student saved successfully", ButtonType.OK).show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Failed to save student", ButtonType.OK).show();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            lblStudentId.setText(studentsBO.generateNewStudentId());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

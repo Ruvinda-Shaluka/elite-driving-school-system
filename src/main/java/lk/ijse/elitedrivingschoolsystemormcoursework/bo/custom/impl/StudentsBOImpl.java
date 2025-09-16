@@ -74,4 +74,9 @@ public class StudentsBOImpl implements StudentsBO {
         }
         return Optional.of(converter.getStudentsDTO(students.get()));
     }
+
+    @Override
+    public String generateNewStudentId() {
+        return studentsDAO.generateNewId();
+    }
 }

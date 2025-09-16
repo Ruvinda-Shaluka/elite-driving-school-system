@@ -20,4 +20,6 @@ public interface StudentsBO extends SuperBO {
     List<String> getAllStudentIds() throws Exception;
 
     Optional<StudentsDTO> findByStudentId(String id) throws Exception;
+
+    String generateNewStudentId();
 }

@@ -118,4 +118,21 @@ public class CourseDAOImpl implements CourseDAO {
         }
     }
 
+    @Override
+    public String generateNewId() {
+        String lastId = null;
+        try {
+            lastId = getLastId();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        if (lastId == null) {
+            return "C-001";
+        } else {
+            int num = Integer.parseInt(lastId.split("-")[1]);
+            num++;
+            return String.format("C-%03d", num);
+        }
+    }
+
 }

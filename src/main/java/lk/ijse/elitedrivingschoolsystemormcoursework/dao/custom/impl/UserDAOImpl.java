@@ -119,4 +119,21 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
+    @Override
+    public String generateNewId() {
+        String lastId = null;
+        try {
+            lastId = getLastId();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        if (lastId == null) {
+            return "U-001";
+        } else {
+            int num = Integer.parseInt(lastId.split("-")[1]);
+            num++;
+            return String.format("U-%03d", num);
+        }
+    }
+
 }

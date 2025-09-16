@@ -119,4 +119,21 @@ public class StudentsDAOImpl implements StudentsDAO {
         }
     }
 
+    @Override
+    public String generateNewId() {
+        String lastId = null;
+        try {
+            lastId = getLastId();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        if (lastId == null) {
+            return "S-001";
+        } else {
+            int num = Integer.parseInt(lastId.split("-")[1]);
+            num++;
+            return String.format("S-%03d", num);
+        }
+    }
+
 }
