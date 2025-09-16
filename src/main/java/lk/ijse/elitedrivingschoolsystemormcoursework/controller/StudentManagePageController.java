@@ -132,7 +132,7 @@ public class StudentManagePageController implements Initializable {
             }
 
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/interfaces/view/UpdateStudentPopUp.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/interfaces/view/AddStudentPopUp.fxml"));
                 Parent parent = fxmlLoader.load();
 
                 StudentPopUpController controller = fxmlLoader.getController();

@@ -21,4 +21,6 @@ public interface PaymentsBO extends SuperBO {
     List<String> getAllPaymentIds() throws Exception;
 
     Optional<PaymentsDTO> findByPaymentId(String id) throws Exception;
+
+    String generateNewPaymentId();
 }

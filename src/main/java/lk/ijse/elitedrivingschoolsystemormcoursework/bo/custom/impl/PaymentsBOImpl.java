@@ -77,4 +77,9 @@ public class PaymentsBOImpl implements PaymentsBO {
         }
         return Optional.empty();
     }
+
+    @Override
+    public String generateNewPaymentId() {
+        return paymentDAO.generateNewId();
+    }
 }

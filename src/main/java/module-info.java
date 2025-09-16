@@ -6,6 +6,8 @@ module lk.ijse.elitedrivingschoolsystemormcoursework {
     requires java.sql;
     requires jakarta.persistence;
     requires lk.ijse.elitedrivingschoolsystemormcoursework;
+    requires java.desktop;
+    requires javafx.graphics;
 
 
     opens lk.ijse.elitedrivingschoolsystemormcoursework to javafx.fxml;
