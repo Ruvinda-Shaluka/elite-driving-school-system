@@ -75,4 +75,9 @@ public class UserBOImpl implements UserBO {
             return Optional.empty();
         }
     }
+
+    @Override
+    public String generateNextUserId() {
+        return userDAO.generateNewId();
+    }
 }

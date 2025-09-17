@@ -8,6 +8,7 @@ module lk.ijse.elitedrivingschoolsystemormcoursework {
     requires lk.ijse.elitedrivingschoolsystemormcoursework;
     requires java.desktop;
     requires javafx.graphics;
+    requires jbcrypt;
 
 
     opens lk.ijse.elitedrivingschoolsystemormcoursework to javafx.fxml;
