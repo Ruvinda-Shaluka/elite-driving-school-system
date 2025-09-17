@@ -87,11 +87,11 @@ public class PaymentManageController implements Initializable {
     public void btnDeleteOnAAction(ActionEvent actionEvent) {
         Alert alert = new Alert(
                 Alert.AlertType.CONFIRMATION,
-                "Are you sure whether you want to delete this student?",
+                "Are you sure whether you want to delete this payment?",
                 ButtonType.YES,
                 ButtonType.NO
         );
-        alert.setTitle("Delete Student");
+        alert.setTitle("Delete Payment");
 
         Optional<ButtonType> result = alert.showAndWait();
 
