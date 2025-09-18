@@ -144,7 +144,6 @@ public class StudentManagePageController implements Initializable {
                 stage.initModality(Modality.APPLICATION_MODAL); // Block input to other windows
                 stage.showAndWait();
 
-                // Refresh the table after the popup is closed
                 loadAllStudents();
             } catch (IOException e) {
                 new Alert(Alert.AlertType.ERROR, "Failed to open the popup!").show();
