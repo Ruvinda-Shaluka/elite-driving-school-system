@@ -103,7 +103,7 @@ public class PaymentManageController implements Initializable {
             }
 
             try {
-                boolean isDeleted = paymentsBO.deletePayments(selectedItem.getStudentId());
+                boolean isDeleted = paymentsBO.deletePayments(selectedItem.getPaymentId());
                 if (isDeleted) {
                     new Alert(Alert.AlertType.INFORMATION, "Payment deleted successfully!").show();
                     loadAllPayments();

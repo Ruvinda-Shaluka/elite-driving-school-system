@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOFactory;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOTypes;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.UserBO;
-import lk.ijse.elitedrivingschoolsystemormcoursework.controller.util.PasswordUtil;
+import lk.ijse.elitedrivingschoolsystemormcoursework.controller.util.PasswordEncryption;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.UserDTO;
 
 import java.net.URL;
@@ -63,7 +63,7 @@ public class UserPopUpController implements Initializable {
                 return;
             }
 
-            String encryptedPassword = PasswordUtil.hashPassword(password);
+            String encryptedPassword = PasswordEncryption.hashPassword(password);
 
             boolean isSaved = userBO.saveUsers(new UserDTO(
                     userId,
@@ -106,7 +106,7 @@ public class UserPopUpController implements Initializable {
                 return;
             }
 
-            String encryptedPassword = PasswordUtil.hashPassword(password);
+            String encryptedPassword = PasswordEncryption.hashPassword(password);
 
             boolean isUpdated = userBO.updateUsers(new UserDTO(
                     userId,
