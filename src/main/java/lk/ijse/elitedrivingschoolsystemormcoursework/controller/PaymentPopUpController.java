@@ -8,6 +8,7 @@ import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOFactory;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOTypes;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.PaymentsBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.StudentsBO;
+import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.QueryBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.PaymentsDTO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.tm.PaymentTM;
 
@@ -29,16 +30,31 @@ public class PaymentPopUpController implements Initializable {
 
     private final StudentsBO studentsBO = (StudentsBO) BOFactory.getInstance().getBO(BOTypes.STUDENTS);
     private final PaymentsBO paymentsBO = (PaymentsBO) BOFactory.getInstance().getBO(BOTypes.PAYMENTS);
+    private final QueryBO queryBO = (QueryBO) BOFactory.getInstance().getBO(BOTypes.QUERY);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             lblPaymentId.setText(paymentsBO.generateNewPaymentId());
-            cmbPaymentMethod.setItems(FXCollections.observableArrayList(studentsBO.getAllStudentIds()));
+            cmbStudentId.setItems(FXCollections.observableArrayList(studentsBO.getAllStudentIds()));
+            cmbStudentId.valueProperty().addListener((obs, oldVal, newVal) -> {
+                if (newVal != null) {
+                    setAmountByStudentId(newVal.toString());
+                }
+            });
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
 
+    private void setAmountByStudentId(String studentId) {
+        try {
+            double amount = queryBO.getTotalCourseAmountByStudentId(studentId);
+            lblAmount.setText(String.valueOf(amount));
+        } catch (Exception e) {
+            lblAmount.setText("0.0");
+            new Alert(Alert.AlertType.ERROR, "Failed to fetch amount").show();
+        }
     }
 
     public void btnSaveOncAction(ActionEvent actionEvent) {
@@ -72,7 +88,7 @@ public class PaymentPopUpController implements Initializable {
                     paymentMethod,
                     status,
                     studentId
-                    ));
+            ));
 
             if (isSaved) {
                 new Alert(Alert.AlertType.INFORMATION, "Payment saved successfully").show();
