@@ -48,6 +48,7 @@ public class StudentManagePageController implements Initializable {
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         colDOB.setCellValueFactory(new PropertyValueFactory<>("dob"));
         colRegDate.setCellValueFactory(new PropertyValueFactory<>("registrationDate"));
+        colEnrolledCourses.setCellValueFactory(new PropertyValueFactory<>("courses"));
 
         try {
             loadAllStudents();
@@ -68,7 +69,7 @@ public class StudentManagePageController implements Initializable {
                                 studentDTO.getAddress(),
                                 studentDTO.getDob(),
                                 studentDTO.getRegistrationDate(),
-                                studentDTO.getCourseDTOs()
+                                studentDTO.getCourses()
                         )).toList()
                 ));
             } catch (Exception e) {

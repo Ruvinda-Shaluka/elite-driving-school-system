@@ -8,12 +8,14 @@ import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOFactory;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOTypes;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.CourseBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.StudentsBO;
+import lk.ijse.elitedrivingschoolsystemormcoursework.dto.CourseDTO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.StudentsDTO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.tm.StudentTM;
 
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -84,6 +86,8 @@ public class StudentPopUpController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Invalid phone number format", ButtonType.OK).show();
             return;
         }
+        ArrayList<CourseDTO> selectedCourses = new ArrayList<>(listViewCourses.getSelectionModel().getSelectedItems());
+
         try {
             boolean isSaved = studentsBO.saveStudents(StudentsDTO.builder()
                     .studentId(lblStudentId.getText())
@@ -94,6 +98,7 @@ public class StudentPopUpController implements Initializable {
                     .address(address)
                     .dob(dobDate)
                     .registrationDate(regDateDate)
+                    .courses(selectedCourses)
                     .build());
             if (isSaved) {
                 new Alert(Alert.AlertType.INFORMATION, "Student saved successfully", ButtonType.OK).show();
@@ -149,6 +154,9 @@ public class StudentPopUpController implements Initializable {
             return;
         }
         try {
+
+            ArrayList<CourseDTO> selectedCourses = new ArrayList<>(listViewCourses.getSelectionModel().getSelectedItems());
+
             boolean isUpdated = studentsBO.updateStudents(StudentsDTO.builder()
                     .studentId(lblStudentId.getText())
                     .firstName(firstName)
@@ -158,6 +166,7 @@ public class StudentPopUpController implements Initializable {
                     .address(address)
                     .dob(dobDate)
                     .registrationDate(regDateDate)
+                    .courses(selectedCourses)
                     .build());
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION, "Student updated successfully", ButtonType.OK).show();
@@ -172,6 +181,7 @@ public class StudentPopUpController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            listViewCourses.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             lblStudentId.setText(studentsBO.generateNewStudentId());
             listViewCourses.setItems(FXCollections.observableArrayList(courseBO.getAllCourses()));
         } catch (Exception e) {

@@ -10,7 +10,7 @@ module lk.ijse.elitedrivingschoolsystemormcoursework {
     requires jbcrypt;
     requires java.naming;
     requires javafx.base;
-    requires lk.ijse.elitedrivingschoolsystemormcoursework;
+
 
     opens lk.ijse.elitedrivingschoolsystemormcoursework.config to jakarta.persistence;
     opens lk.ijse.elitedrivingschoolsystemormcoursework.entity to org.hibernate.orm.core;

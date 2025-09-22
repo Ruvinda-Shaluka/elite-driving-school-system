@@ -5,8 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,14 +13,7 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elitedrivingschoolsystemormcoursework.controller.InstructorsManagePageController">
     <children>
-        <BorderPane layoutY="-7.0" prefHeight="174.0" prefWidth="1200.0" AnchorPane.bottomAnchor="767.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-51.0">
-            <right>
-                <ImageView fitHeight="200.0" fitWidth="142.0" BorderPane.alignment="CENTER">
-                    <image>
-                        <Image url="@/interfaces/assets/images/WhatsApp Image 2025-09-15 at 11.16.55_d95a7d65.jpg" />
-                    </image>
-                </ImageView>
-            </right>
+        <BorderPane layoutX="-21.0" layoutY="36.0" prefHeight="174.0" prefWidth="1200.0" AnchorPane.bottomAnchor="680.8" AnchorPane.leftAnchor="-21.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="36.0">
             <center>
                 <Label text="instructors Details." BorderPane.alignment="CENTER">
                     <font>
