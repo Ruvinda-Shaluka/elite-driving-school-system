@@ -183,7 +183,15 @@ public class StudentPopUpController implements Initializable {
         try {
             listViewCourses.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             lblStudentId.setText(studentsBO.generateNewStudentId());
-            listViewCourses.setItems(FXCollections.observableArrayList(courseBO.getAllCourses()));
+            listViewCourses.setItems(FXCollections.observableArrayList(courseBO.getAllCourses()
+            ));
+            listViewCourses.setCellFactory(lv -> new ListCell<CourseDTO>() {
+                @Override
+                protected void updateItem(CourseDTO item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setText((empty || item == null) ? null : item.getCourse_name());
+}
+            });
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

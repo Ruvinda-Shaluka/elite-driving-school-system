@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -17,12 +14,16 @@ import javafx.stage.Stage;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOFactory;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOTypes;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.StudentsBO;
+import lk.ijse.elitedrivingschoolsystemormcoursework.dto.CourseDTO;
+import lk.ijse.elitedrivingschoolsystemormcoursework.dto.StudentsDTO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.tm.StudentTM;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class StudentManagePageController implements Initializable {
     public TableView<StudentTM> tblStudent;
@@ -50,34 +51,39 @@ public class StudentManagePageController implements Initializable {
         colRegDate.setCellValueFactory(new PropertyValueFactory<>("registrationDate"));
         colEnrolledCourses.setCellValueFactory(new PropertyValueFactory<>("courses"));
 
+        loadAllStudents();
+    }
+
+    private StudentTM toStudentTM(StudentsDTO dto) {
+        List<String> courseNames = dto.getCourses().stream()
+                .map(CourseDTO::getCourse_name)
+                .collect(Collectors.toList()); // ✅ keep as List instead of String
+
+        return new StudentTM(
+                dto.getStudentId(),
+                dto.getFirstName(),
+                dto.getLastName(),
+                dto.getEmail(),
+                dto.getPhone(),
+                dto.getAddress(),
+                dto.getDob(),
+                dto.getRegistrationDate(),
+                courseNames
+        );
+    }
+
+
+    private void loadAllStudents() {
         try {
-            loadAllStudents();
+            List<StudentsDTO> students = studentsBO.getAllStudents();
+            List<StudentTM> studentTMs = students.stream()
+                    .map(this::toStudentTM)
+                    .collect(Collectors.toList());
+            tblStudent.setItems(FXCollections.observableArrayList(studentTMs));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
-
-    private void loadAllStudents() {
-            try {
-                tblStudent.setItems(FXCollections.observableArrayList(
-                        studentsBO.getAllStudents().stream().map(studentDTO -> new StudentTM(
-                                studentDTO.getStudentId(),
-                                studentDTO.getFirstName(),
-                                studentDTO.getLastName(),
-                                studentDTO.getEmail(),
-                                studentDTO.getPhone(),
-                                studentDTO.getAddress(),
-                                studentDTO.getDob(),
-                                studentDTO.getRegistrationDate(),
-                                studentDTO.getCourses()
-                        )).toList()
-                ));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-    }
-
-
 
     public void btnAddOnAction(ActionEvent actionEvent) {
         try {
@@ -87,8 +93,9 @@ public class StudentManagePageController implements Initializable {
             Stage stage = new Stage();
             stage.setTitle("Add Student");
             stage.setScene(new Scene(parent));
-            stage.initModality(Modality.APPLICATION_MODAL); // Block input to other windows
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
+
             loadAllStudents();
         } catch (IOException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to open the popup!").show();
@@ -139,9 +146,8 @@ public class StudentManagePageController implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/interfaces/view/AddStudentPopUp.fxml"));
                 Parent parent = fxmlLoader.load();
 
-                // Get popup controller and send data
                 StudentPopUpController controller = fxmlLoader.getController();
-                controller.setStudentData(selectedItem); // ✅ custom method to load data
+                controller.setStudentData(selectedItem);
 
                 Stage stage = new Stage();
                 stage.setTitle("Update Student");
@@ -149,7 +155,6 @@ public class StudentManagePageController implements Initializable {
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
 
-                // Refresh table after update
                 loadAllStudents();
             } catch (IOException e) {
                 new Alert(Alert.AlertType.ERROR, "Failed to open the popup!").show();

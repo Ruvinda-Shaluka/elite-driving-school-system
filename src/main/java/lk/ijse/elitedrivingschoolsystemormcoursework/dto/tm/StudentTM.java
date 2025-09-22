@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,5 +23,5 @@ public class StudentTM extends ActionEvent {
     private String address;
     private Date dob;
     private Date registrationDate;
-    private ArrayList<CourseDTO> courses;
+    private List<String> courses;
 }
