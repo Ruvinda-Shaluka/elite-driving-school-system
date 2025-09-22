@@ -129,7 +129,7 @@ public class PaymentManageController implements Initializable {
                 Parent parent = fxmlLoader.load();
 
                 PaymentPopUpController controller = fxmlLoader.getController();
-                controller.btnUpdateOnAction(selectedItem);
+                controller.setPaymentData(selectedItem);
 
                 Stage stage = new Stage();
                 stage.setTitle("Update Payment");

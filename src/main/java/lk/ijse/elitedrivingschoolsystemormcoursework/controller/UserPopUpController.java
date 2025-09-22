@@ -9,6 +9,7 @@ import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOTypes;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.UserBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.controller.util.PasswordEncryption;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.UserDTO;
+import lk.ijse.elitedrivingschoolsystemormcoursework.dto.tm.UserTM;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -126,4 +127,14 @@ public class UserPopUpController implements Initializable {
         }
     }
 
+    public void setUserData(UserTM selectedItem) {
+        lblUserId.setText(selectedItem.getUserId());
+        txtUsername.setText(selectedItem.getUserName());
+        txtPassword.setText(selectedItem.getPassword());
+        txtConfirmPassword.setText(selectedItem.getPassword());
+        txtEmail.setText(selectedItem.getEmail());
+        cmbRole.setValue(selectedItem.getRole());
+        btnSave.setDisable(true);
+        lblUserId.setDisable(true);
+    }
 }

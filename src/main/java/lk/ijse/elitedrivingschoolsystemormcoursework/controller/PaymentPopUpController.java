@@ -9,6 +9,7 @@ import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOTypes;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.PaymentsBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.StudentsBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.PaymentsDTO;
+import lk.ijse.elitedrivingschoolsystemormcoursework.dto.tm.PaymentTM;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -124,5 +125,16 @@ public class PaymentPopUpController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void setPaymentData(PaymentTM selectedItem) {
+        lblPaymentId.setText(selectedItem.getPaymentId());
+        txtPaymentDate.setText(String.valueOf(selectedItem.getPaymentDate()));
+        txtAmount.setText(String.valueOf(selectedItem.getAmount()));
+        cmbPaymentMethod.setValue(selectedItem.getPaymentMethod());
+        txtStatus.setText(selectedItem.getStatus());
+        txtStudentId.setText(selectedItem.getStudentId());
+        btnSave.setDisable(true);
+        btnUpdate.setDisable(false);
     }
 }

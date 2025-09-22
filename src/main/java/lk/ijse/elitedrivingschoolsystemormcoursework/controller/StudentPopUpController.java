@@ -7,6 +7,7 @@ import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOFactory;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOTypes;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.StudentsBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.StudentsDTO;
+import lk.ijse.elitedrivingschoolsystemormcoursework.dto.tm.StudentTM;
 
 import java.net.URL;
 import java.text.ParseException;
@@ -171,4 +172,18 @@ public class StudentPopUpController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+    public void setStudentData(StudentTM student) {
+        lblStudentId.setText(student.getStudentId());
+        txtFirstName.setText(student.getFirstName());
+        txtLastName.setText(student.getLastName());
+        txtEmail.setText(student.getEmail());
+        txtContact.setText(student.getPhone());
+        txtAddress.setText(student.getAddress());
+        txtDOB.setText(String.valueOf(student.getDob()));
+        txtRegDate.setText(String.valueOf(student.getRegistrationDate()));
+        btnSave.setDisable(true);
+        btnUpdate.setDisable(false);
+    }
+
 }

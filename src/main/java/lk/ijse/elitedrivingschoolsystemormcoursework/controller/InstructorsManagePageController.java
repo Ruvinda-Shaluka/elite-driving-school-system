@@ -96,7 +96,7 @@ public class InstructorsManagePageController implements Initializable {
                 Parent parent = fxmlLoader.load();
 
                 InstructorsPopUpController controller = fxmlLoader.getController();
-                controller.btnUpdateOnAction(selectedItem);
+                controller.setInstructorsData(selectedItem);
 
                 Stage stage = new Stage();
                 stage.setTitle("Update Instructor");

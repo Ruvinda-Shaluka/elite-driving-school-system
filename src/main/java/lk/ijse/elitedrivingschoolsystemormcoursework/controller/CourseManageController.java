@@ -97,7 +97,7 @@ public class CourseManageController implements Initializable {
                 Parent parent = fxmlLoader.load();
 
                 CoursePopUpController controller = fxmlLoader.getController();
-                controller.btnUpdateOnAction(selectedItem);
+                controller.setCourseData(selectedItem);
 
                 Stage stage = new Stage();
                 stage.setTitle("Update Course");

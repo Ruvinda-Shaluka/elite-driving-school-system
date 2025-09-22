@@ -10,6 +10,7 @@ import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOTypes;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.CourseBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.InstructorsBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.CourseDTO;
+import lk.ijse.elitedrivingschoolsystemormcoursework.dto.tm.CourseTM;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -115,5 +116,16 @@ public class CoursePopUpController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void setCourseData(CourseTM selectedItem) {
+        lblCourseId.setText(selectedItem.getCourse_id());
+        txtCourseName.setText(selectedItem.getCourse_name());
+        txtDescription.setText(selectedItem.getDescription());
+        txtCourseFee.setText(String.valueOf(selectedItem.getFee()));
+        txtDuration.setText(selectedItem.getDuration());
+        cmbInstructorId.setValue(selectedItem.getInstructor_id());
+        btnSave.setDisable(true);
+        btnUpdate.setDisable(false);
     }
 }

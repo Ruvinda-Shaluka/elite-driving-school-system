@@ -8,6 +8,7 @@ import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOTypes;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.InstructorsBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.InstructorsDTO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.StudentsDTO;
+import lk.ijse.elitedrivingschoolsystemormcoursework.dto.tm.InstructorsTM;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -142,5 +143,17 @@ public class InstructorsPopUpController  implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void setInstructorsData(InstructorsTM selectedItem) {
+        lblInstructorId.setText(selectedItem.getInstructor_id());
+        txtFirstName.setText(selectedItem.getFirst_name());
+        txtLastName.setText(selectedItem.getLast_name());
+        txtEmail.setText(selectedItem.getEmail());
+        txtContact.setText(selectedItem.getPhone());
+        txtSpecialization.setText(selectedItem.getSpecialization());
+        txtAvailability.setText(selectedItem.getAvailability());
+        btnSave.setDisable(true);
+        btnUpdate.setDisable(false);
     }
 }

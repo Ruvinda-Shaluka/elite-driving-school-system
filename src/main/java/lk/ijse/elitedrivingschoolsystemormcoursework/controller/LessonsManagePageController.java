@@ -98,7 +98,7 @@ public class LessonsManagePageController implements Initializable {
                 Parent parent = fxmlLoader.load();
 
                 LessonsPopUpController controller = fxmlLoader.getController();
-                controller.btnUpdateOnAction(selectedItem);
+                controller.setLessonsData(selectedItem);
 
                 Stage stage = new Stage();
                 stage.setTitle("Update Lessons");

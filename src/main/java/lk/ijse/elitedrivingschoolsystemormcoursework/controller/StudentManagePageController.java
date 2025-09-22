@@ -86,6 +86,7 @@ public class StudentManagePageController implements Initializable {
             stage.setScene(new Scene(parent));
             stage.initModality(Modality.APPLICATION_MODAL); // Block input to other windows
             stage.showAndWait();
+            loadAllStudents();
         } catch (IOException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to open the popup!").show();
         }
@@ -135,15 +136,17 @@ public class StudentManagePageController implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/interfaces/view/AddStudentPopUp.fxml"));
                 Parent parent = fxmlLoader.load();
 
+                // Get popup controller and send data
                 StudentPopUpController controller = fxmlLoader.getController();
-                controller.btnUpdateOnAction(selectedItem);
+                controller.setStudentData(selectedItem); // ✅ custom method to load data
 
                 Stage stage = new Stage();
                 stage.setTitle("Update Student");
                 stage.setScene(new Scene(parent));
-                stage.initModality(Modality.APPLICATION_MODAL); // Block input to other windows
+                stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
 
+                // Refresh table after update
                 loadAllStudents();
             } catch (IOException e) {
                 new Alert(Alert.AlertType.ERROR, "Failed to open the popup!").show();

@@ -11,6 +11,7 @@ import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.InstructorsBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.LessonsBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.StudentsBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.LessonsDTO;
+import lk.ijse.elitedrivingschoolsystemormcoursework.dto.tm.LessonsTM;
 
 import java.net.URL;
 import java.sql.Time;
@@ -123,5 +124,18 @@ public class LessonsPopUpController implements Initializable {
         }catch (Exception e){
             throw new RuntimeException(e);
         }
+    }
+
+    public void setLessonsData(LessonsTM selectedItem) {
+        lblLessonId.setText(selectedItem.getLesson_id());
+        txtLessonDate.setText(new SimpleDateFormat("yyyy-MM-dd").format(selectedItem.getLessonDate()));
+        txtStartTime.setText(selectedItem.getStartTime().toString());
+        txtEndTime.setText(selectedItem.getEndTime().toString());
+        txtStatus.setText(selectedItem.getStatus());
+        cmbStudentId.setValue(selectedItem.getStudent_id());
+        cmbCourseId.setValue(selectedItem.getCourse_id());
+        cmbInstructorId.setValue(selectedItem.getInstructor_id());
+        btnSave.setDisable(true);
+        btnUpdate.setDisable(false);
     }
 }

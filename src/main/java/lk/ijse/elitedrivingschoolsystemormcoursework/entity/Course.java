@@ -34,7 +34,7 @@ public class Course {
 
     @ManyToOne
     @JoinColumn(name = "instructor_id", referencedColumnName = "instructor_id")
-    private Instructors instructor;
+    private Instructors instructors;
 
     @ManyToMany
     private List<Students> students ;
