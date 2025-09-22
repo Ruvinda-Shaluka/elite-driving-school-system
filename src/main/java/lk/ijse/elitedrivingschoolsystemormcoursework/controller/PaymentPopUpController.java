@@ -19,13 +19,13 @@ import java.util.ResourceBundle;
 public class PaymentPopUpController implements Initializable {
 
     public TextField txtPaymentDate;
-    public TextField txtAmount;
     public ComboBox cmbPaymentMethod;
     public TextField txtStatus;
-    public TextField txtStudentId;
     public Button btnSave;
     public Button btnUpdate;
     public Label lblPaymentId;
+    public Label lblAmount;
+    public ComboBox cmbStudentId;
 
     private final StudentsBO studentsBO = (StudentsBO) BOFactory.getInstance().getBO(BOTypes.STUDENTS);
     private final PaymentsBO paymentsBO = (PaymentsBO) BOFactory.getInstance().getBO(BOTypes.PAYMENTS);
@@ -44,10 +44,10 @@ public class PaymentPopUpController implements Initializable {
     public void btnSaveOncAction(ActionEvent actionEvent) {
         String paymentId = lblPaymentId.getText();
         String paymentDate = txtPaymentDate.getText();
-        double amount = Double.parseDouble(txtAmount.getText());
+        double amount = Double.parseDouble(lblAmount.getText());
         String paymentMethod = String.valueOf(cmbPaymentMethod.getValue());
         String status = txtStatus.getText();
-        String studentId = txtStudentId.getText();
+        String studentId = cmbStudentId.getValue().toString();
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
@@ -57,7 +57,7 @@ public class PaymentPopUpController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        if (paymentId.isEmpty() || paymentDate.isEmpty() || txtAmount.getText().isEmpty() || paymentMethod.isEmpty() || status.isEmpty()|| studentId.isEmpty()) {
+        if (paymentId.isEmpty() || paymentDate.isEmpty() || lblAmount.getText().isEmpty() || paymentMethod.isEmpty() || status.isEmpty()|| studentId.isEmpty()) {
             btnSave.setDisable(true);
             btnUpdate.setDisable(true);
             new Alert(Alert.AlertType.ERROR, "Please fill all the fields").show();
@@ -87,10 +87,10 @@ public class PaymentPopUpController implements Initializable {
     public void btnUpdateOnAction(ActionEvent actionEvent) {
         String paymentId = lblPaymentId.getText();
         String paymentDate = txtPaymentDate.getText();
-        double amount = Double.parseDouble(txtAmount.getText());
+        double amount = Double.parseDouble(lblAmount.getText());
         String paymentMethod = String.valueOf(cmbPaymentMethod.getValue());
         String status = txtStatus.getText();
-        String studentId = txtStudentId.getText();
+        String studentId = cmbStudentId.getValue().toString();
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
@@ -100,7 +100,7 @@ public class PaymentPopUpController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        if (paymentId.isEmpty() || paymentDate.isEmpty() || txtAmount.getText().isEmpty() || paymentMethod.isEmpty() || status.isEmpty()|| studentId.isEmpty()) {
+        if (paymentId.isEmpty() || paymentDate.isEmpty() || lblAmount.getText().isEmpty() || paymentMethod.isEmpty() || status.isEmpty()|| studentId.isEmpty()) {
             btnSave.setDisable(true);
             btnUpdate.setDisable(true);
             new Alert(Alert.AlertType.ERROR, "Please fill all the fields").show();
@@ -130,10 +130,10 @@ public class PaymentPopUpController implements Initializable {
     public void setPaymentData(PaymentTM selectedItem) {
         lblPaymentId.setText(selectedItem.getPaymentId());
         txtPaymentDate.setText(String.valueOf(selectedItem.getPaymentDate()));
-        txtAmount.setText(String.valueOf(selectedItem.getAmount()));
+        lblAmount.setText(String.valueOf(selectedItem.getAmount()));
         cmbPaymentMethod.setValue(selectedItem.getPaymentMethod());
         txtStatus.setText(selectedItem.getStatus());
-        txtStudentId.setText(selectedItem.getStudentId());
+        cmbStudentId.setValue(selectedItem.getStudentId());
         btnSave.setDisable(true);
         btnUpdate.setDisable(false);
     }
