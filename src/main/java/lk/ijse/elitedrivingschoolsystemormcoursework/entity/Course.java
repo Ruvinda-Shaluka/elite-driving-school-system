@@ -3,7 +3,9 @@ package lk.ijse.elitedrivingschoolsystemormcoursework.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,11 +36,9 @@ public class Course {
     @JoinColumn(name = "instructor_id", referencedColumnName = "instructor_id")
     private Instructors instructor;
 
-    @OneToMany(
-            mappedBy = "course",
-            cascade = CascadeType.ALL
-    )
-    private List<StudentCourseDetails> studentCourseDetails;
+    @ManyToMany
+    private List<Students> students ;
+
 
     @OneToMany(
             mappedBy = "course",

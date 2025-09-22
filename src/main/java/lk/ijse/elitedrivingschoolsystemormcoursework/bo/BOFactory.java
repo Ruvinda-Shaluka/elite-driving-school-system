@@ -26,8 +26,6 @@ public class BOFactory {
                 return new PaymentsBOImpl();
             case QUERY:
                 return new QueryBOImpl();
-            case STUDENT_COURSE_DETAILS:
-                return new StudentCourseDetailsBOImpl();
             case STUDENTS:
                 return new StudentsBOImpl();
             case USER:

@@ -20,8 +20,6 @@ public class CourseDTO {
     private String description;
     private String instructor_id;
     @Builder.Default
-    private ArrayList<StudentCourseDetailsDTO> student_course_details = new ArrayList<>();
-    @Builder.Default
     private ArrayList<LessonsDTO> lessons = new ArrayList<>();
 
 }

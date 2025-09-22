@@ -5,7 +5,6 @@ module lk.ijse.elitedrivingschoolsystemormcoursework {
     requires static lombok;
     requires java.sql;
     requires jakarta.persistence;
-    requires lk.ijse.elitedrivingschoolsystemormcoursework;
     requires java.desktop;
     requires javafx.graphics;
     requires jbcrypt;

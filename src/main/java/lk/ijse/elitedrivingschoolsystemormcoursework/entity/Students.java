@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -40,11 +42,14 @@ public class Students {
     @Column(nullable = false)
     private Date registrationDate;
 
-    @OneToMany(
-            mappedBy = "students",
-            cascade = CascadeType.ALL
+    @ManyToMany
+    @JoinTable(
+            name = "student_course",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
     )
-    private List<StudentCourseDetails> studentCourseDetails;
+    private List<Course> courses ;
+
 
     @OneToMany(
             mappedBy = "students",

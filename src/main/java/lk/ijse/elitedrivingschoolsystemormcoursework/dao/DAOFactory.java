@@ -23,8 +23,6 @@ public class DAOFactory {
                 return new PaymentsDAOImpl();
             case QUERY:
                 return new QueryDAOImpl();
-            case STUDENT_COURSE_DETAILS:
-                return new StudentCourseDetailsDAOImpl();
             case STUDENTS:
                 return new StudentsDAOImpl();
             case USER:
