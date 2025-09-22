@@ -3,25 +3,25 @@ package lk.ijse.elitedrivingschoolsystemormcoursework.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "course")
 public class Course {
 
     @Id
-    @Column
-    private String course_id;
+    @EqualsAndHashCode.Include
+    @Column(name = "course_id")
+    private String courseId;
 
-    @Column(nullable = false)
-    private String course_name;
+    @Column(name = "course_name", nullable = false)
+    private String courseName;
 
     @Column(nullable = false)
     private String duration;
@@ -36,13 +36,10 @@ public class Course {
     @JoinColumn(name = "instructor_id", referencedColumnName = "instructor_id")
     private Instructors instructors;
 
-    @ManyToMany
-    private List<Students> students ;
+    // inverse side
+    @ManyToMany(mappedBy = "courses")
+    private List<Students> students = new ArrayList<>();
 
-
-    @OneToMany(
-            mappedBy = "course",
-            cascade = CascadeType.ALL
-    )
-    private List<Lessons> lessons;
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<Lessons> lessons = new ArrayList<>();
 }

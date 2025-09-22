@@ -3,27 +3,28 @@ package lk.ijse.elitedrivingschoolsystemormcoursework.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "students")
 public class Students {
 
     @Id
-    @Column
+    @EqualsAndHashCode.Include
+    @Column(name = "student_id")
     private String studentId;
 
-    @Column
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(nullable = false, unique = true)
@@ -41,26 +42,17 @@ public class Students {
     @Column(nullable = false)
     private Date registrationDate;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "student_course",
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
-    private List<Course> courses ;
+    private List<Course> courses = new ArrayList<>();
 
+    @OneToMany(mappedBy = "students", cascade = CascadeType.ALL)
+    private List<Lessons> lessons = new ArrayList<>();
 
-    @OneToMany(
-            mappedBy = "students",
-            cascade = CascadeType.ALL
-    )
-    private List<Lessons> lessons;
-
-    @OneToMany(
-            mappedBy = "students",
-            cascade = CascadeType.ALL
-    )
-    private List<Payments> payments;
+    @OneToMany(mappedBy = "students", cascade = CascadeType.ALL)
+    private List<Payments> payments = new ArrayList<>();
 }
-
-

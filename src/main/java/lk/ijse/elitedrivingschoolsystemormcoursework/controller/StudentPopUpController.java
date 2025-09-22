@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOFactory;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOTypes;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.CourseBO;
+import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.EnrollBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.StudentsBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.CourseDTO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.StudentsDTO;
@@ -23,6 +24,7 @@ public class StudentPopUpController implements Initializable {
 
     private final StudentsBO studentsBO = (StudentsBO) BOFactory.getInstance().getBO(BOTypes.STUDENTS);
     private final CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOTypes.COURSE);
+    private final EnrollBO enrollBO = (EnrollBO) BOFactory.getInstance().getBO(BOTypes.ENROLL);
 
     private final String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
     private final String phoneRegex = "^07\\d{8}$";
@@ -89,7 +91,7 @@ public class StudentPopUpController implements Initializable {
         ArrayList<CourseDTO> selectedCourses = new ArrayList<>(listViewCourses.getSelectionModel().getSelectedItems());
 
         try {
-            boolean isSaved = studentsBO.saveStudents(StudentsDTO.builder()
+            boolean isSaved = enrollBO.saveStudents(StudentsDTO.builder()
                     .studentId(lblStudentId.getText())
                     .firstName(firstName)
                     .lastName(lastName)
@@ -157,7 +159,7 @@ public class StudentPopUpController implements Initializable {
 
             ArrayList<CourseDTO> selectedCourses = new ArrayList<>(listViewCourses.getSelectionModel().getSelectedItems());
 
-            boolean isUpdated = studentsBO.updateStudents(StudentsDTO.builder()
+            boolean isUpdated = enrollBO.updateStudents(StudentsDTO.builder()
                     .studentId(lblStudentId.getText())
                     .firstName(firstName)
                     .lastName(lastName)
