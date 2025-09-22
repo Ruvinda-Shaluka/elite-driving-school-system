@@ -1,8 +1,10 @@
 package lk.ijse.elitedrivingschoolsystemormcoursework.dto.tm;
 
 import javafx.event.ActionEvent;
+import lk.ijse.elitedrivingschoolsystemormcoursework.dto.CourseDTO;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -20,4 +22,5 @@ public class StudentTM extends ActionEvent {
     private String address;
     private Date dob;
     private Date registrationDate;
+    private ArrayList<CourseDTO> courses;
 }

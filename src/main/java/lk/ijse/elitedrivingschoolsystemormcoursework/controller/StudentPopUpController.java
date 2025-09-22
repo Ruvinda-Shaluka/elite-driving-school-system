@@ -1,10 +1,12 @@
 package lk.ijse.elitedrivingschoolsystemormcoursework.controller;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOFactory;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOTypes;
+import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.CourseBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.StudentsBO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.StudentsDTO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.tm.StudentTM;
@@ -18,6 +20,7 @@ import java.util.ResourceBundle;
 public class StudentPopUpController implements Initializable {
 
     private final StudentsBO studentsBO = (StudentsBO) BOFactory.getInstance().getBO(BOTypes.STUDENTS);
+    private final CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOTypes.COURSE);
 
     private final String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
     private final String phoneRegex = "^07\\d{8}$";
@@ -33,6 +36,7 @@ public class StudentPopUpController implements Initializable {
     public Button btnSave;
     public Button btnUpdate;
     public Label lblStudentId;
+    public ListView listViewCourses;
 
     public void btnSaveOncAction(ActionEvent actionEvent) {
 
@@ -43,6 +47,7 @@ public class StudentPopUpController implements Initializable {
         String address = txtAddress.getText();
         String dob = txtDOB.getText();
         String regDate = txtRegDate.getText();
+
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date dobDate = null;
@@ -168,6 +173,7 @@ public class StudentPopUpController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             lblStudentId.setText(studentsBO.generateNewStudentId());
+            listViewCourses.setItems(FXCollections.observableArrayList(courseBO.getAllCourses()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

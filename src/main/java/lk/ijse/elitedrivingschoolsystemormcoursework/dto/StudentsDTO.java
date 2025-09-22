@@ -23,6 +23,8 @@ public class StudentsDTO {
     private Date dob;
     private Date registrationDate;
     @Builder.Default
+    private ArrayList<CourseDTO> courseDTOs = new ArrayList<>();
+    @Builder.Default
     private ArrayList<LessonsDTO> lessons =new ArrayList<>();
     @Builder.Default
     private ArrayList<PaymentsDTO> payments =new ArrayList<>();

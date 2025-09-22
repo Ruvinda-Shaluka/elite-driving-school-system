@@ -34,6 +34,7 @@ public class StudentManagePageController implements Initializable {
     public TableColumn<StudentTM, String> colAddress;
     public TableColumn<StudentTM, String> colDOB;
     public TableColumn<StudentTM, String> colRegDate;
+    public TableColumn<StudentTM, String> colEnrolledCourses;
 
     private final StudentsBO studentsBO = (StudentsBO) BOFactory.getInstance().getBO(BOTypes.STUDENTS);
 
@@ -66,7 +67,8 @@ public class StudentManagePageController implements Initializable {
                                 studentDTO.getPhone(),
                                 studentDTO.getAddress(),
                                 studentDTO.getDob(),
-                                studentDTO.getRegistrationDate()
+                                studentDTO.getRegistrationDate(),
+                                studentDTO.getCourseDTOs()
                         )).toList()
                 ));
             } catch (Exception e) {
