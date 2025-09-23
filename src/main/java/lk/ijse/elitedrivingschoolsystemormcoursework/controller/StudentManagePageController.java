@@ -49,29 +49,10 @@ public class StudentManagePageController implements Initializable {
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         colDOB.setCellValueFactory(new PropertyValueFactory<>("dob"));
         colRegDate.setCellValueFactory(new PropertyValueFactory<>("registrationDate"));
-        colEnrolledCourses.setCellValueFactory(new PropertyValueFactory<>("courses"));
+        colEnrolledCourses.setCellValueFactory(new PropertyValueFactory<>("courseId"));
 
         loadAllStudents();
     }
-
-    private StudentTM toStudentTM(StudentsDTO dto) {
-        List<String> courseNames = dto.getCourses().stream()
-                .map(CourseDTO::getCourse_name)
-                .collect(Collectors.toList()); // ✅ keep as List instead of String
-
-        return new StudentTM(
-                dto.getStudentId(),
-                dto.getFirstName(),
-                dto.getLastName(),
-                dto.getEmail(),
-                dto.getPhone(),
-                dto.getAddress(),
-                dto.getDob(),
-                dto.getRegistrationDate(),
-                courseNames
-        );
-    }
-
 
     private void loadAllStudents() {
         try {
@@ -84,6 +65,27 @@ public class StudentManagePageController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+    private StudentTM toStudentTM(StudentsDTO dto) {
+        String courseIds = (dto.getCourses() == null || dto.getCourses().isEmpty()) ? "Not Found" :
+                String.join(", ", dto.getCourses().stream()
+                        .map(CourseDTO::getCourse_id)
+                        .toList());
+        System.out.println(dto);
+
+        return new StudentTM(
+                dto.getStudentId(),
+                dto.getFirstName(),
+                dto.getLastName(),
+                dto.getEmail(),
+                dto.getPhone(),
+                dto.getAddress(),
+                dto.getDob(),
+                dto.getRegistrationDate(),
+                courseIds
+        );
+    }
+
 
     public void btnAddOnAction(ActionEvent actionEvent) {
         try {
