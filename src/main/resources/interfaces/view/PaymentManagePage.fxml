@@ -5,9 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -16,22 +13,7 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elitedrivingschoolsystemormcoursework.controller.PaymentManageController">
     <children>
-        <BorderPane layoutY="-7.0" prefHeight="200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="861.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-51.0">
-            <right>
-                <ImageView fitHeight="209.0" fitWidth="142.0" BorderPane.alignment="CENTER">
-                    <image>
-                        <Image url="" />
-                    </image>
-                </ImageView>
-            </right>
-            <center>
-                <Label text="Payments Details." BorderPane.alignment="CENTER">
-                    <font>
-                        <Font name="Tahoma Bold" size="25.0" />
-                    </font>
-                </Label>
-            </center>
-        </BorderPane>
+        <BorderPane layoutY="-7.0" prefHeight="200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="861.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-51.0" />
         <HBox layoutY="110.0" prefHeight="37.0" prefWidth="1160.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="127.0">
             <children>
                 <Button mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right, #11998e, #38ef7d);;" text="Add Payments" textFill="WHITE">
@@ -42,11 +24,6 @@
                         <Insets left="20.0" />
                     </HBox.margin>
                 </Button>
-                <TextField prefHeight="35.0" prefWidth="877.0" promptText="search">
-                    <HBox.margin>
-                        <Insets left="100.0" />
-                    </HBox.margin>
-                </TextField>
             </children>
         </HBox>
         <HBox layoutX="20.0" layoutY="650.0" prefHeight="37.0" prefWidth="1160.0" AnchorPane.bottomAnchor="20.0">
@@ -81,5 +58,10 @@
                 </TableView>
             </children>
         </VBox>
+          <Label layoutX="486.0" layoutY="69.0" text="Payments Details.">
+              <font>
+                  <Font name="Tahoma Bold" size="25.0" />
+              </font>
+          </Label>
     </children>
 </AnchorPane>

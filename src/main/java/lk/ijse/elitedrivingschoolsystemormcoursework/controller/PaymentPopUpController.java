@@ -36,6 +36,7 @@ public class PaymentPopUpController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             lblPaymentId.setText(paymentsBO.generateNewPaymentId());
+            cmbPaymentMethod.setItems(FXCollections.observableArrayList("Cash", "Card", "Online"));
             cmbStudentId.setItems(FXCollections.observableArrayList(studentsBO.getAllStudentIds()));
             cmbStudentId.valueProperty().addListener((obs, oldVal, newVal) -> {
                 if (newVal != null) {
