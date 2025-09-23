@@ -56,14 +56,14 @@ public class LessonsPopUpController implements Initializable {
 
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+
 
             Date lessonDate = dateFormat.parse(lessonDateStr);
-            Date startTime = timeFormat.parse(startTimeStr);
-            Date endTime = timeFormat.parse(endTimeStr);
+            String startTime = startTimeStr;
+            String endTime = endTimeStr;
 
             boolean isSaved = lessonsBO.saveLessons(new LessonsDTO(
-                    lessonId, studentId, courseId, instructorId, lessonDate, (Time) startTime, (Time) endTime, status
+                    lessonId, studentId, courseId, instructorId, lessonDate, startTime,  endTime, status
             ));
             if (isSaved) {
                 new Alert(Alert.AlertType.INFORMATION, "Lesson saved successfully!").show();
@@ -93,14 +93,13 @@ public class LessonsPopUpController implements Initializable {
 
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
             Date lessonDate = dateFormat.parse(lessonDateStr);
-            Date startTime = timeFormat.parse(startTimeStr);
-            Date endTime = timeFormat.parse(endTimeStr);
+            String startTime = startTimeStr;
+            String endTime = endTimeStr;
 
             boolean isUpdated = lessonsBO.updateLessons(new LessonsDTO(
-                    lessonId, studentId, courseId, instructorId, lessonDate, (Time) startTime, (Time) endTime, status
+                    lessonId, studentId, courseId, instructorId, lessonDate, startTime, endTime, status
             ));
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION, "Lesson updated successfully!").show();
@@ -119,8 +118,8 @@ public class LessonsPopUpController implements Initializable {
         try {
             lblLessonId.setText(lessonsBO.generateNewLessonId());
             cmbStudentId.setItems(FXCollections.observableArrayList(studentBO.getAllStudentIds()));
-            cmbCourseId.setItems(FXCollections.observableArrayList(courseBO.getAllCourses()));
-            cmbInstructorId.setItems(FXCollections.observableArrayList(instructorsBO.getAllInstructors()));
+            cmbCourseId.setItems(FXCollections.observableArrayList(courseBO.getAllCourseIds()));
+            cmbInstructorId.setItems(FXCollections.observableArrayList(instructorsBO.getAllInstructorIds()));
         }catch (Exception e){
             throw new RuntimeException(e);
         }
