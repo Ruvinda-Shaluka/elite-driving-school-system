@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOFactory;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.BOTypes;
 import lk.ijse.elitedrivingschoolsystemormcoursework.bo.custom.UserBO;
-import lk.ijse.elitedrivingschoolsystemormcoursework.controller.util.PasswordEncryption;
+import lk.ijse.elitedrivingschoolsystemormcoursework.util.PasswordEncryption;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.UserDTO;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dto.tm.UserTM;
 

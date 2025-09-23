@@ -1,5 +1,5 @@
 package lk.ijse.elitedrivingschoolsystemormcoursework.dto;
 
 public enum Roles {
-    ADMIN, USER
+    ADMIN, RECEPTIONIST
 }

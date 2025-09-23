@@ -119,7 +119,8 @@ public class LessonsPopUpController implements Initializable {
             lblLessonId.setText(lessonsBO.generateNewLessonId());
             cmbStudentId.setItems(FXCollections.observableArrayList(studentBO.getAllStudentIds()));
             cmbCourseId.setItems(FXCollections.observableArrayList(courseBO.getAllCourseIds()));
-            cmbInstructorId.setItems(FXCollections.observableArrayList(instructorsBO.getAllInstructorIds()));
+            cmbInstructorId.setItems(FXCollections.observableArrayList(instructorsBO.getAllInstructorIds
+                    ()));
         }catch (Exception e){
             throw new RuntimeException(e);
         }
