@@ -17,11 +17,11 @@ public class Course {
 
     @Id
     @EqualsAndHashCode.Include
-    @Column(name = "course_id")
-    private String courseId;
+    @Column
+    private String course_id;
 
-    @Column(name = "course_name", nullable = false)
-    private String courseName;
+    @Column(nullable = false)
+    private String course_name;
 
     @Column(nullable = false)
     private String duration;
