@@ -61,7 +61,7 @@
                             </HBox.margin>
                             <children>
                                 <Label prefHeight="18.0" prefWidth="55.0" text="Status" />
-                                <TextField fx:id="txtStatus" style="-fx-border-radius: 20px; -fx-background-radius: 20px;" />
+                                <ComboBox fx:id="cmbStatus" style="-fx-border-radius: 20px; -fx-background-radius: 20px;" />
                             </children>
                         </VBox>
                     </children>
