@@ -37,12 +37,12 @@ public class PaymentManageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        colPaymentId.setCellValueFactory(new PropertyValueFactory<>("payment_id"));
-        colPaymentDate.setCellValueFactory(new PropertyValueFactory<>("payment_date"));
+        colPaymentId.setCellValueFactory(new PropertyValueFactory<>("paymentId"));
+        colPaymentDate.setCellValueFactory(new PropertyValueFactory<>("paymentDate"));
         colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        colPaymentMethod.setCellValueFactory(new PropertyValueFactory<>("payment_method"));
+        colPaymentMethod.setCellValueFactory(new PropertyValueFactory<>("paymentMethod"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        colStudentId.setCellValueFactory(new PropertyValueFactory<>("student_id"));
+        colStudentId.setCellValueFactory(new PropertyValueFactory<>("studentId"));
         
         try {
             loadAllPayments();
@@ -79,6 +79,7 @@ public class PaymentManageController implements Initializable {
             stage.setScene(new Scene(parent));
             stage.initModality(Modality.APPLICATION_MODAL); // Block input to other windows
             stage.showAndWait();
+            loadAllPayments();
         } catch (IOException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to open the popup!").show();
         }

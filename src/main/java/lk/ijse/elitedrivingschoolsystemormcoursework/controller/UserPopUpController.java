@@ -69,9 +69,9 @@ public class UserPopUpController implements Initializable {
             boolean isSaved = userBO.saveUsers(new UserDTO(
                     userId,
                     username,
-                    email,
                     encryptedPassword,
                     role,
+                    email,
                     status
             ));
             if (isSaved) {
@@ -112,9 +112,9 @@ public class UserPopUpController implements Initializable {
             boolean isUpdated = userBO.updateUsers(new UserDTO(
                     userId,
                     username,
-                    email,
                     encryptedPassword,
                     role,
+                    email,
                     status
             ));
             if (isUpdated) {

@@ -97,7 +97,6 @@ public class StudentManagePageController implements Initializable {
             stage.setScene(new Scene(parent));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
-
             loadAllStudents();
         } catch (IOException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to open the popup!").show();

@@ -2,8 +2,6 @@ package lk.ijse.elitedrivingschoolsystemormcoursework.dao.custom.impl;
 
 import lk.ijse.elitedrivingschoolsystemormcoursework.config.FactoryConfiguration;
 import lk.ijse.elitedrivingschoolsystemormcoursework.dao.custom.LessonsDAO;
-import lk.ijse.elitedrivingschoolsystemormcoursework.entity.Course;
-import lk.ijse.elitedrivingschoolsystemormcoursework.entity.Instructors;
 import lk.ijse.elitedrivingschoolsystemormcoursework.entity.Lessons;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

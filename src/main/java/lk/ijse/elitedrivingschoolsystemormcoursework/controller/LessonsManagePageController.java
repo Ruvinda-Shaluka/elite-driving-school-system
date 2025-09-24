@@ -105,8 +105,6 @@ public class LessonsManagePageController implements Initializable {
                 stage.setScene(new Scene(parent));
                 stage.initModality(Modality.APPLICATION_MODAL); // Block input to other windows
                 stage.showAndWait();
-
-                // Refresh the table after the popup is closed
                 loadAllLessons();
             } catch (IOException e) {
                 new Alert(Alert.AlertType.ERROR, "Failed to open the popup!").show();
@@ -117,9 +115,9 @@ public class LessonsManagePageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         colId.setCellValueFactory(new PropertyValueFactory<>("lesson_id"));
-        colLessonDate.setCellValueFactory(new PropertyValueFactory<>("lesson_date"));
-        colStartTime.setCellValueFactory(new PropertyValueFactory<>("start_time"));
-        colEndTime.setCellValueFactory(new PropertyValueFactory<>("end_time"));
+        colLessonDate.setCellValueFactory(new PropertyValueFactory<>("lessonDate"));
+        colStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        colEndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         colStudentId.setCellValueFactory(new PropertyValueFactory<>("student_id"));
         colCourseId.setCellValueFactory(new PropertyValueFactory<>("course_id"));
