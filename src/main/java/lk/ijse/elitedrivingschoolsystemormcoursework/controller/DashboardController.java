@@ -2,17 +2,26 @@ package lk.ijse.elitedrivingschoolsystemormcoursework.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.elitedrivingschoolsystemormcoursework.util.AuthUtil;
+import lk.ijse.elitedrivingschoolsystemormcoursework.dto.Roles;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class DashboardController {
+public class DashboardController implements Initializable {
     public AnchorPane ancDashBoard;
+    public Button btnInstructors;
+    public Button btnCourse;
+    public Button btnUser;
 
     public void btnStudentOnAction(ActionEvent actionEvent) {
         navigateTo("/interfaces/view/StudentManagePage.fxml");
@@ -67,6 +76,19 @@ public class DashboardController {
             ancDashBoard.getChildren().add(pane);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        disableButtons();
+    }
+
+    public void disableButtons(){
+        if (String.valueOf(Roles.RECEPTIONIST).equalsIgnoreCase(AuthUtil.getRole())) {
+            btnInstructors.setVisible(false);
+            btnCourse.setVisible(false);
+            btnUser.setVisible(false);
         }
     }
 }
